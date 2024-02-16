@@ -20,5 +20,10 @@ output application/java
 			</ee:message>
 		</ee:transform>
 		<logger level="INFO" doc:name="Logger" doc:id="50bf3eff-1173-43c5-ac3f-2703a081d3b8" message="after transform logger"/>
+		<ee:transform doc:name="Transform Message" doc:id="5280d468-5a26-4ed3-8e94-c72f1a2094ba" >
+			<ee:message >
+				<ee:set-payload ><![CDATA["welcome"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
 	</flow>
 </mule>
