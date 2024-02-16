@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7a33fb57-e447-4eaf-894a-429d4ec40f16" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="demo3Flow" doc:id="cb0be24c-5a30-455f-aa3c-5738ab4e9bf0" >
+		<http:listener doc:name="Listener" doc:id="9ca60d10-bc71-4d5c-a74e-e09e0460c683" config-ref="HTTP_Listener_config" path="/demo3"/>
+		<logger level="INFO" doc:name="Logger" doc:id="8b5839d6-8e51-4445-99db-b5e5cf25a9d6" message="Hello"/>
+		<ee:transform doc:name="Transform Message" doc:id="7aa23ae0-86f7-40c0-a019-2c4f0f4bb858" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/java
+---
+"Welcome to MuleSoft BLR"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger" doc:id="50bf3eff-1173-43c5-ac3f-2703a081d3b8" message="after transform"/>
+	</flow>
+</mule>
